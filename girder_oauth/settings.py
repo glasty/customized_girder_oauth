@@ -24,6 +24,9 @@ class PluginSettings:
     BOX_CLIENT_ID = 'oauth.box_client_id'
     BOX_CLIENT_SECRET = 'oauth.box_client_secret'
 
+    CUSTOM_CLIENT_ID = 'oauth.custom_client_id'
+    CUSTOM_CLIENT_SECRET = 'oauth.custom_client_secret'
+
 
 @setting_utilities.default(PluginSettings.PROVIDERS_ENABLED)
 def _defaultProvidersEnabled():
@@ -42,12 +45,14 @@ def _defaultIgnoreRegistrationPolicy():
     PluginSettings.LINKEDIN_CLIENT_ID,
     PluginSettings.BITBUCKET_CLIENT_ID,
     PluginSettings.BOX_CLIENT_ID,
+    PluginSettings.CUSTOM_CLIENT_ID,
     PluginSettings.GOOGLE_CLIENT_SECRET,
     PluginSettings.GLOBUS_CLIENT_SECRET,
     PluginSettings.GITHUB_CLIENT_SECRET,
     PluginSettings.LINKEDIN_CLIENT_SECRET,
     PluginSettings.BITBUCKET_CLIENT_SECRET,
-    PluginSettings.BOX_CLIENT_SECRET
+    PluginSettings.BOX_CLIENT_SECRET,
+    PluginSettings.CUSTOM_CLIENT_SECRET
 })
 def _defaultOtherSettings():
     return ''
@@ -72,12 +77,14 @@ def _validateIgnoreRegistrationPolicy(doc):
     PluginSettings.LINKEDIN_CLIENT_ID,
     PluginSettings.BITBUCKET_CLIENT_ID,
     PluginSettings.BOX_CLIENT_ID,
+    PluginSettings.CUSTOM_CLIENT_ID,
     PluginSettings.GOOGLE_CLIENT_SECRET,
     PluginSettings.GLOBUS_CLIENT_SECRET,
     PluginSettings.GITHUB_CLIENT_SECRET,
     PluginSettings.LINKEDIN_CLIENT_SECRET,
     PluginSettings.BITBUCKET_CLIENT_SECRET,
     PluginSettings.BOX_CLIENT_SECRET
+    PluginSettings.CUSTOM_CLIENT_SECRET
 })
 def _validateOtherSettings(doc):
     pass

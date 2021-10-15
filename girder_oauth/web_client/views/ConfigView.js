@@ -95,6 +95,14 @@ var ConfigView = View.extend({
             instructions: 'Client IDs and secret keys are managed in the Box ' +
                           'Developer Services page. When creating your client ID ' +
                           'there, use the following as the authorization callback URL:'
+        }, {
+            id: 'custom',
+            name: 'Custom',
+            icon: 'custom',
+            hasAuthorizedOrigins: false,
+            instructions: 'Client IDs and secret keys are managed in the Box ' +
+                          'Developer Services page. When creating your client ID ' +
+                          'there, use the following as the authorization callback URL:'
         }];
         this.providerIds = _.pluck(this.providers, 'id');
 
