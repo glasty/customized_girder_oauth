@@ -83,7 +83,7 @@ def _validateIgnoreRegistrationPolicy(doc):
     PluginSettings.GITHUB_CLIENT_SECRET,
     PluginSettings.LINKEDIN_CLIENT_SECRET,
     PluginSettings.BITBUCKET_CLIENT_SECRET,
-    PluginSettings.BOX_CLIENT_SECRET
+    PluginSettings.BOX_CLIENT_SECRET,
     PluginSettings.CUSTOM_CLIENT_SECRET
 })
 def _validateOtherSettings(doc):
