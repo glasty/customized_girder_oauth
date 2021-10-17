@@ -22,6 +22,15 @@ var ConfigView = View.extend({
             }, {
                 key: 'oauth.' + providerId + '_client_secret',
                 value: this.$('#g-oauth-provider-' + providerId + '-client-secret').val().trim()
+            }, {
+                key: 'oauth.' + providerId + '_client_auth_url',
+                value: this.$('#g-oauth-provider-' + providerId + '-client-auth-url').val().trim() 
+            }, {
+                key: 'oauth.' + providerId + '_client_token_url',
+                value: this.$('#g-oauth-provider-' + providerId + '-client-token-url').val().trim() 
+            }, {
+                key: 'oauth.' + providerId + '_client_scope',
+                value: this.$('#g-oauth-provider-' + providerId + '-client-scope').val().trim() 
             }]);
         },
 
@@ -110,6 +119,9 @@ var ConfigView = View.extend({
         _.each(this.providerIds, function (id) {
             settingKeys.push('oauth.' + id + '_client_id');
             settingKeys.push('oauth.' + id + '_client_secret');
+            settingKeys.push('oauth.' + id + '_client_auth_url');
+            settingKeys.push('oauth.' + id + '_client_token_url');
+            settingKeys.push('oauth.' + id + '_client_scope');
         }, this);
 
         restRequest({
@@ -152,6 +164,12 @@ var ConfigView = View.extend({
                     this.settingVals['oauth.' + id + '_client_id']);
                 this.$('#g-oauth-provider-' + id + '-client-secret').val(
                     this.settingVals['oauth.' + id + '_client_secret']);
+                this.$('#g-oauth-provider-' + id + '-client-auth-url').val(
+                    this.settingVals['oauth.' + id + '_client_auth_url']);
+                this.$('#g-oauth-provider-' + id + '-client-token-url').val(
+                    this.settingVals['oauth.' + id + '_client_token_url']);
+                this.$('#g-oauth-provider-' + id + '-client-scope').val(
+                    this.settingVals['oauth.' + id + '_client_scope']);
             }, this);
 
             var checked = this.settingVals['oauth.ignore_registration_policy'];
