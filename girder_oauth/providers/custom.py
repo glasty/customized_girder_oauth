@@ -11,10 +11,6 @@ from .base import ProviderBase
 from ..settings import PluginSettings
 
 class Custom(ProviderBase):
-    _AUTH_URL = 'https://api.login.yahoo.com/oauth2/request_auth'
-    _AUTH_SCOPES = ['profile', 'email', 'sdps-r']
-    _TOKEN_URL = 'https://api.login.yahoo.com/oauth2/get_token'
-
     def getClientIdSetting(self):
         return Setting().get(PluginSettings.CUSTOM_CLIENT_ID)
 
@@ -75,7 +71,6 @@ class Custom(ProviderBase):
     def getUser(self, token):
         idToken = token['id_token']
 
-        # Because the token came directly from Google's API, we don't need to verify it
         payload = jwt.decode(idToken, verify=False)
 
         oauthId = payload['sub']

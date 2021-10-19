@@ -16,13 +16,15 @@ var ConfigView = View.extend({
             var providerId = $(event.target).attr('provider-id');
             this.$('#g-oauth-provider-' + providerId + '-error-message').empty();
 
-            this._saveSettings(providerId, [{
+            var basicFields = [{
                 key: 'oauth.' + providerId + '_client_id',
                 value: this.$('#g-oauth-provider-' + providerId + '-client-id').val().trim()
             }, {
                 key: 'oauth.' + providerId + '_client_secret',
                 value: this.$('#g-oauth-provider-' + providerId + '-client-secret').val().trim()
-            }, {
+            }]
+
+            var customFields = [{
                 key: 'oauth.' + providerId + '_client_auth_url',
                 value: this.$('#g-oauth-provider-' + providerId + '-client-auth-url').val().trim() 
             }, {
@@ -40,7 +42,13 @@ var ConfigView = View.extend({
             }, {
                 key: 'oauth.' + providerId + '_client_name',
                 value: this.$('#g-oauth-provider-' + providerId + '-client-name').val().trim() 
-            }]);
+            }]
+
+            if (providerId.includes('custom')) {
+                basicFields = [...basicFields, customFields]
+            }
+
+            this._saveSettings(providerId, basicFields);
         },
 
         'change .g-ignore-registration-policy': function (event) {
