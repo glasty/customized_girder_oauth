@@ -22,6 +22,23 @@ class Custom(ProviderBase):
         return Setting().get(PluginSettings.CUSTOM_CLIENT_SECRET)
 
     @classmethod
+    def getClientAuthUrl(cls):
+        return Setting().get(PluginSettings.CUSTOM_CLIENT_AUTH_URL)
+
+    def getClientTokenUrl(self):
+        return Setting().get(PluginSettings.CUSTOM_CLIENT_TOKEN_URL)
+
+    @classmethod
+    def getClientScope(cls):
+        return Setting().get(PluginSettings.CUSTOM_CLIENT_SCOPE)
+    
+    def getClientButtonColor(self):
+        return Setting().get(PluginSettings.CUSTOM_CLIENT_BUTTON_COLOR)
+
+    def getClientIconUrl(self):
+        return Setting().get(PluginSettings.CUSTOM_CLIENT_ICON_URL)
+
+    @classmethod
     def getUrl(cls, state):
         clientId = Setting().get(PluginSettings.CUSTOM_CLIENT_ID)
         if not clientId:
@@ -34,9 +51,9 @@ class Custom(ProviderBase):
             'client_id': clientId,
             'redirect_uri': callbackUrl,
             'state': state,
-            'scope': 'openid %s' % ' '.join(cls._AUTH_SCOPES)
+            'scope': 'openid %s' % cls.getClientScope()
         })
-        return '%s?%s' % (cls._AUTH_URL, query)
+        return '%s?%s' % (cls.getClientAuthUrl(), query)
 
     def getToken(self, code):
         params = {
@@ -46,7 +63,7 @@ class Custom(ProviderBase):
             'client_secret': self.clientSecret,
             'redirect_uri': self.redirectUri
         }
-        resp = self._getJson(method='POST', url=self._TOKEN_URL,
+        resp = self._getJson(method='POST', url=self.getClientTokenUrl(),
                              data=params,
                              headers={'Accept': 'application/json'})
         if 'error' in resp:

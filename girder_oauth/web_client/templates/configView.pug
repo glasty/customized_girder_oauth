@@ -36,25 +36,82 @@ p Only fill in the information for the OAuth2 providers you wish to enable.
             span.g-oauth-value= `${origin}${apiRoot}/oauth/${provider.id}/callback`
           form.g-oauth-provider-form(role="form",
               id=`g-oauth-provider-${provider.id}-form`, provider-id=provider.id)
+            
+            //Provider name 
+            if provider.isCustom 
+              .form-group
+                label.control-label(for=`g-oauth-provider-${provider.id}-client-name`) #{provider.name} client name
+                input.input-sm.form-control(id=`g-oauth-provider-${provider.id}-client-name`,
+                    type="text", placeholder="Client name")
+            else
+              .form-group
+                label.control-label(for=`g-oauth-provider-${provider.id}-client-name`) #{provider.name} client name
+                input.input-sm.form-control(id=`g-oauth-provider-${provider.id}-client-name`,
+                    type="text", placeholder=provider.name disabled)
+            //Client ID
             .form-group
               label.control-label(for=`g-oauth-provider-${provider.id}-client-id`) #{provider.name} client ID
               input.input-sm.form-control(id=`g-oauth-provider-${provider.id}-client-id`,
                   type="text", placeholder="Client ID")
+            //Client secret
             .form-group
               label.control-label(for=`g-oauth-provider-${provider.id}-client-secret`) #{provider.name} client secret
               input.input-sm.form-control(id=`g-oauth-provider-${provider.id}-client-secret`,
                   type="text", placeholder="Client secret")
-            .form-group
-              label.control-label(for=`g-oauth-provider-${provider.id}-client-auth-url`) #{provider.name} client auth url
-              input.input-sm.form-control(id=`g-oauth-provider-${provider.id}-client-auth-url`,
-                  type="text", placeholder="Client auth url")
-            .form-group
-              label.control-label(for=`g-oauth-provider-${provider.id}-client-token-url`) #{provider.name} client token url
-              input.input-sm.form-control(id=`g-oauth-provider-${provider.id}-client-token-url`,
-                  type="text", placeholder="Client token url")
-            .form-group
-              label.control-label(for=`g-oauth-provider-${provider.id}-client-secret`) #{provider.name} client secret
-              input.input-sm.form-control(id=`g-oauth-provider-${provider.id}-client-secret`,
-                  type="text", placeholder="Client secret")
+            //Authorization endpoint
+            if provider.isCustom
+              .form-group
+                label.control-label(for=`g-oauth-provider-${provider.id}-client-auth-url`) #{provider.name} client authorization endpoint
+                input.input-sm.form-control(id=`g-oauth-provider-${provider.id}-client-auth-url`,
+                    type="text", placeholder="Client authorization endpoint")
+            else
+              .form-group
+                label.control-label(for=`g-oauth-provider-${provider.id}-client-auth-url`) #{provider.name} client authorization endpoint
+                input.input-sm.form-control(id=`g-oauth-provider-${provider.id}-client-auth-url`,
+                    type="text", placeholder="Not editable" disabled)
+            //Token endpoint
+            if provider.isCustom
+              .form-group
+                label.control-label(for=`g-oauth-provider-${provider.id}-client-token-url`) #{provider.name} client token endpoint
+                input.input-sm.form-control(id=`g-oauth-provider-${provider.id}-client-token-url`,
+                    type="text", placeholder="Client token endpoint")
+            else 
+              .form-group
+                label.control-label(for=`g-oauth-provider-${provider.id}-client-token-url`) #{provider.name} client token endpoint
+                input.input-sm.form-control(id=`g-oauth-provider-${provider.id}-client-token-url`,
+                    type="text", placeholder="Not editable" disabled)
+            
+            //Scope
+            if provider.isCustom
+              .form-group
+                label.control-label(for=`g-oauth-provider-${provider.id}-client-scope`) #{provider.name} client scope
+                p Scope defines application level of access to user account. Application needs access to 'given_name', 'last_name' and 'email'. More than one scope can be requested - each key word has to be separeted by space e.g: 'profile email'
+                input.input-sm.form-control(id=`g-oauth-provider-${provider.id}-client-scope`,
+                    type="text", placeholder="Client scope")
+            else 
+              .form-group
+                label.control-label(for=`g-oauth-provider-${provider.id}-client-scope`) #{provider.name} client scope
+                input.input-sm.form-control(id=`g-oauth-provider-${provider.id}-client-scope`,
+                    type="text", placeholder="Not editable" disabled)
+            if provider.isCustom
+              .form-group
+                label.control-label(for=`g-oauth-provider-${provider.id}-client-button-color`) #{provider.name} client button color
+                input.input-sm.form-control(id=`g-oauth-provider-${provider.id}-client-button-color`,
+                    type="text", placeholder="Client button color")
+            else 
+              .form-group
+                label.control-label(for=`g-oauth-provider-${provider.id}-client-button-color`) #{provider.name} client button color
+                input.input-sm.form-control(id=`g-oauth-provider-${provider.id}-client-button-color`,
+                    type="text", placeholder="Not editable" disabled)
+            if provider.isCustom
+              .form-group
+                label.control-label(for=`g-oauth-provider-${provider.id}-client-icon-url`) #{provider.name} client icon url
+                input.input-sm.form-control(id=`g-oauth-provider-${provider.id}-client-icon-url`,
+                    type="text", placeholder="Client icon url")
+            else
+              .form-group
+                label.control-label(for=`g-oauth-provider-${provider.id}-client-icon-url`) #{provider.name} client icon url
+                input.input-sm.form-control(id=`g-oauth-provider-${provider.id}-client-icon-url`,
+                    type="text", placeholder="Not editable" disabled)
             p.g-validation-failed-message(id=`g-oauth-provider-${provider.id}-error-message`)
             input.btn.btn-sm.btn-primary(type="submit", value="Save", provider-id=provider.id)

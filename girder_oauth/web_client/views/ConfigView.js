@@ -31,6 +31,15 @@ var ConfigView = View.extend({
             }, {
                 key: 'oauth.' + providerId + '_client_scope',
                 value: this.$('#g-oauth-provider-' + providerId + '-client-scope').val().trim() 
+            }, {
+                key: 'oauth.' + providerId + '_client_button_color',
+                value: this.$('#g-oauth-provider-' + providerId + '-client-button-color').val().trim() 
+            }, {
+                key: 'oauth.' + providerId + '_client_icon_url',
+                value: this.$('#g-oauth-provider-' + providerId + '-client-icon-url').val().trim() 
+            }, {
+                key: 'oauth.' + providerId + '_client_name',
+                value: this.$('#g-oauth-provider-' + providerId + '-client-name').val().trim() 
             }]);
         },
 
@@ -59,6 +68,7 @@ var ConfigView = View.extend({
             name: 'Google',
             icon: 'gplus',
             hasAuthorizedOrigins: true,
+            isCustom: false,
             instructions: 'Client IDs and secret keys are managed in the Google ' +
                           'Developer Console. When creating your client ID there, ' +
                           'use the following values:'
@@ -67,6 +77,7 @@ var ConfigView = View.extend({
             name: 'Globus',
             icon: 'globe',
             hasAuthorizedOrigins: false,
+            isCustom: false,
             instructions: 'Client IDs and secret keys are managed in the Google ' +
                           'Developer Console. When creating your client ID there, ' +
                           'use the following values:'
@@ -75,6 +86,7 @@ var ConfigView = View.extend({
             name: 'GitHub',
             icon: 'github-circled',
             hasAuthorizedOrigins: false,
+            isCustom: false,
             instructions: 'Client IDs and secret keys are managed in the ' +
                           'Applications page of your GitHub account settings. ' +
                           'Use the following as the authorization callback URL:'
@@ -83,6 +95,7 @@ var ConfigView = View.extend({
             name: 'Bitbucket',
             icon: 'bitbucket',
             hasAuthorizedOrigins: false,
+            isCustom: false,
             instructions: 'Client IDs and secret keys are managed in the ' +
                           'Applications page of your Bitbucket account settings. ' +
                           'Use the following as the authorization callback URL:'
@@ -91,6 +104,7 @@ var ConfigView = View.extend({
             name: 'LinkedIn',
             icon: 'linkedin',
             hasAuthorizedOrigins: false,
+            isCustom: false,
             instructions: 'Client IDs and secret keys are managed at the ' +
                           'Applications page of the LinkedIn Developers site. ' +
                           'Select the "r_basicprofile" and "r_emailaddress" ' +
@@ -101,6 +115,7 @@ var ConfigView = View.extend({
             name: 'Box',
             icon: 'box',
             hasAuthorizedOrigins: false,
+            isCustom: false,
             instructions: 'Client IDs and secret keys are managed in the Box ' +
                           'Developer Services page. When creating your client ID ' +
                           'there, use the following as the authorization callback URL:'
@@ -109,6 +124,7 @@ var ConfigView = View.extend({
             name: 'Custom',
             icon: 'custom',
             hasAuthorizedOrigins: false,
+            isCustom: true,
             instructions: 'Client IDs and secret keys are managed in the Box ' +
                           'Developer Services page. When creating your client ID ' +
                           'there, use the following as the authorization callback URL:'
@@ -122,6 +138,9 @@ var ConfigView = View.extend({
             settingKeys.push('oauth.' + id + '_client_auth_url');
             settingKeys.push('oauth.' + id + '_client_token_url');
             settingKeys.push('oauth.' + id + '_client_scope');
+            settingKeys.push('oauth.' + id + '_client_button_color');
+            settingKeys.push('oauth.' + id + '_client_icon_url');
+            settingKeys.push('oauth.' + id + '_client_name');
         }, this);
 
         restRequest({
@@ -170,6 +189,12 @@ var ConfigView = View.extend({
                     this.settingVals['oauth.' + id + '_client_token_url']);
                 this.$('#g-oauth-provider-' + id + '-client-scope').val(
                     this.settingVals['oauth.' + id + '_client_scope']);
+                this.$('#g-oauth-provider-' + id + '-client-button-color').val(
+                    this.settingVals['oauth.' + id + '_client_button_color']);
+                this.$('#g-oauth-provider-' + id + '-client-icon-url').val(
+                    this.settingVals['oauth.' + id + '_client_icon_url']);
+                this.$('#g-oauth-provider-' + id + '-client-name').val(
+                    this.settingVals['oauth.' + id + '_client_name']);
             }, this);
 
             var checked = this.settingVals['oauth.ignore_registration_policy'];

@@ -47,6 +47,26 @@ class ProviderBase:
         raise NotImplementedError()
 
     @classmethod
+    def getClientAuthUrl(cls):
+        raise NotImplementedError()
+
+    def getClientTokenUrl(self):
+        raise NotImplementedError()
+
+    @classmethod
+    def getClientScope(cls):
+        raise NotImplementedError()
+
+    def getClientButtonColor(self):
+        raise NotImplementedError()
+
+    def getClientIconUrl(self):
+        raise NotImplementedError()
+
+    def getClientName(self):
+        raise NotImplementedError()
+
+    @classmethod
     def getUrl(cls, state):
         """
         Return the URL to start the OAuth2 authentication flow with an external
