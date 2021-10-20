@@ -82,7 +82,11 @@ class OAuth(Resource):
                 {
                     'id': provider.getProviderName(external=False),
                     'name': provider.getProviderName(external=True),
-                    'url': provider.getUrl(state)
+                    'url': provider.getUrl(state),
+                    'button': provider.getClientName(),
+                    'icon': provider.getClientIconUrl(),
+                    'btnColor': provider.getClientButtonColor()[0],
+                    'btnTextColor': provider.getClientButtonColor()[-1]
                 }
                 for provider in enabledProviders
             ]

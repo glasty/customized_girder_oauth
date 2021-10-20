@@ -28,11 +28,18 @@ class Custom(ProviderBase):
     def getClientScope(cls):
         return Setting().get(PluginSettings.CUSTOM_CLIENT_SCOPE)
     
-    def getClientButtonColor(self):
-        return Setting().get(PluginSettings.CUSTOM_CLIENT_BUTTON_COLOR)
+    @classmethod
+    def getClientButtonColor(cls):
+        color = Setting().get(PluginSettings.CUSTOM_CLIENT_BUTTON_COLOR)
+        return color.split(';')
 
-    def getClientIconUrl(self):
+    @classmethod
+    def getClientIconUrl(cls):
         return Setting().get(PluginSettings.CUSTOM_CLIENT_ICON_URL)
+
+    @classmethod
+    def getClientName(cls):
+        return Setting().get(PluginSettings.CUSTOM_CLIENT_NAME)
 
     @classmethod
     def getUrl(cls, state):
@@ -47,7 +54,7 @@ class Custom(ProviderBase):
             'client_id': clientId,
             'redirect_uri': callbackUrl,
             'state': state,
-            'scope': 'openid %s' % cls.getClientScope()
+            'scope': '%s' % cls.getClientScope()
         })
         return '%s?%s' % (cls.getClientAuthUrl(), query)
 

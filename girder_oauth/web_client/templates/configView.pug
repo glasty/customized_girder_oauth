@@ -93,9 +93,11 @@ p Only fill in the information for the OAuth2 providers you wish to enable.
                 label.control-label(for=`g-oauth-provider-${provider.id}-client-scope`) #{provider.name} client scope
                 input.input-sm.form-control(id=`g-oauth-provider-${provider.id}-client-scope`,
                     type="text", placeholder="Not editable" disabled)
+            //Button color
             if provider.isCustom
               .form-group
                 label.control-label(for=`g-oauth-provider-${provider.id}-client-button-color`) #{provider.name} client button color
+                p Colors of the button. Use format colorOfBackground;colorOfText. E.g: #FFFFFF;#000000
                 input.input-sm.form-control(id=`g-oauth-provider-${provider.id}-client-button-color`,
                     type="text", placeholder="Client button color")
             else 
@@ -103,6 +105,7 @@ p Only fill in the information for the OAuth2 providers you wish to enable.
                 label.control-label(for=`g-oauth-provider-${provider.id}-client-button-color`) #{provider.name} client button color
                 input.input-sm.form-control(id=`g-oauth-provider-${provider.id}-client-button-color`,
                     type="text", placeholder="Not editable" disabled)
+            //Icon url
             if provider.isCustom
               .form-group
                 label.control-label(for=`g-oauth-provider-${provider.id}-client-icon-url`) #{provider.name} client icon url

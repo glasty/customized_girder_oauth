@@ -6,7 +6,13 @@
       else
         | Log in with
   each button in buttons
-    .g-oauth-button(class=button.class, g-provider=button.providerId)
-      .g-oauth-button-icon
-        i(class=`icon-${button.icon}`)
-      .g-oauth-button-text= button.text || button.providerId
+    if button.isCustom
+      .g-oauth-button(class=`.g-oauth-button-custom`, g-provider=button.providerId, style=`color: ${button.btnTextColor}; background: ${button.btnColor}`)
+        .g-oauth-button-icon
+            img(src=button.icon style=`height: 20px`)  
+        .g-oauth-button-text= button.text || button.providerId
+    else 
+      .g-oauth-button(class=button.class, g-provider=button.providerId)
+        .g-oauth-button-icon 
+          i(class=`icon-${button.icon}`)
+        .g-oauth-button-text= button.text || button.providerId

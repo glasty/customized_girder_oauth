@@ -57,14 +57,17 @@ class ProviderBase:
     def getClientScope(cls):
         raise NotImplementedError()
 
-    def getClientButtonColor(self):
-        raise NotImplementedError()
+    @classmethod
+    def getClientButtonColor(cls):
+        return ["",""]
 
-    def getClientIconUrl(self):
-        raise NotImplementedError()
+    @classmethod
+    def getClientIconUrl(cls):
+        return ""
 
-    def getClientName(self):
-        raise NotImplementedError()
+    @classmethod
+    def getClientName(cls):
+        return ""
 
     @classmethod
     def getUrl(cls, state):

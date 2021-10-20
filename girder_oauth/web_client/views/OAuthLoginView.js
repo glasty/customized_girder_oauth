@@ -46,7 +46,12 @@ var OAuthLoginView = View.extend({
 
             if (btn) {
                 btn.providerId = provider.id;
-                btn.text = provider.name;
+                btn.text = provider.button || provider.name;
+                if (provider.id.includes("custom")) {
+                    btn.icon = provider.icon;
+                    btn.btnColor = provider.btnColor;
+                    btn.btnTextColor = provider.btnTextColor;
+                }
                 buttons.push(btn);
             } else {
                 console.warn('Unsupported OAuth2 provider: ' + provider.id);
@@ -91,7 +96,8 @@ var OAuthLoginView = View.extend({
         },
         custom: {
             icon: 'custom',
-            class: 'g-oauth-button-custom'
+            class: 'g-oauth-button-custom',
+            isCustom: true,
         }
     }
 });

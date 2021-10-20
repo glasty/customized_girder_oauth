@@ -18,19 +18,6 @@ class Google(ProviderBase):
     _TOKEN_URL = 'https://oauth2.googleapis.com/token'
     _DISCOVERY_URL = 'https://accounts.google.com/.well-known/openid-configuration'
 
-    def __init__(self, redirectUri, clientId=None, clientSecret=None):
-        self.clientId = clientId or self.getClientIdSetting()
-        self.clientSecret = clientSecret or self.getClientSecretSetting()
-        self.redirectUri = redirectUri
-
-        #Added default data to settings
-        Setting().set(PluginSettings.GOOGLE_CLIENT_AUTH_URL, 'https://accounts.google.com/o/oauth2/v2/auth')
-
-        Setting().set(PluginSettings.GOOGLE_CLIENT_TOKEN_URL, 'https://oauth2.googleapis.com/token')
-
-        Setting().set(PluginSettings.GOOGLE_CLIENT_SCOPE, 'openid profile email')
-        
-
     def getClientIdSetting(self):
         return Setting().get(PluginSettings.GOOGLE_CLIENT_ID)
 

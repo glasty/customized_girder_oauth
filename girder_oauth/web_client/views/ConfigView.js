@@ -45,7 +45,7 @@ var ConfigView = View.extend({
             }]
 
             if (providerId.includes('custom')) {
-                basicFields = [...basicFields, customFields]
+                basicFields = [...basicFields, ...customFields]
             }
 
             this._saveSettings(providerId, basicFields);
@@ -143,12 +143,15 @@ var ConfigView = View.extend({
         _.each(this.providerIds, function (id) {
             settingKeys.push('oauth.' + id + '_client_id');
             settingKeys.push('oauth.' + id + '_client_secret');
-            settingKeys.push('oauth.' + id + '_client_auth_url');
-            settingKeys.push('oauth.' + id + '_client_token_url');
-            settingKeys.push('oauth.' + id + '_client_scope');
-            settingKeys.push('oauth.' + id + '_client_button_color');
-            settingKeys.push('oauth.' + id + '_client_icon_url');
-            settingKeys.push('oauth.' + id + '_client_name');
+
+            if (id.includes("custom")) {
+                settingKeys.push('oauth.' + id + '_client_auth_url');
+                settingKeys.push('oauth.' + id + '_client_token_url');
+                settingKeys.push('oauth.' + id + '_client_scope');
+                settingKeys.push('oauth.' + id + '_client_button_color');
+                settingKeys.push('oauth.' + id + '_client_icon_url');
+                settingKeys.push('oauth.' + id + '_client_name');
+            }
         }, this);
 
         restRequest({
@@ -191,18 +194,21 @@ var ConfigView = View.extend({
                     this.settingVals['oauth.' + id + '_client_id']);
                 this.$('#g-oauth-provider-' + id + '-client-secret').val(
                     this.settingVals['oauth.' + id + '_client_secret']);
-                this.$('#g-oauth-provider-' + id + '-client-auth-url').val(
-                    this.settingVals['oauth.' + id + '_client_auth_url']);
-                this.$('#g-oauth-provider-' + id + '-client-token-url').val(
-                    this.settingVals['oauth.' + id + '_client_token_url']);
-                this.$('#g-oauth-provider-' + id + '-client-scope').val(
-                    this.settingVals['oauth.' + id + '_client_scope']);
-                this.$('#g-oauth-provider-' + id + '-client-button-color').val(
-                    this.settingVals['oauth.' + id + '_client_button_color']);
-                this.$('#g-oauth-provider-' + id + '-client-icon-url').val(
-                    this.settingVals['oauth.' + id + '_client_icon_url']);
-                this.$('#g-oauth-provider-' + id + '-client-name').val(
-                    this.settingVals['oauth.' + id + '_client_name']);
+
+                if (id.includes("custom")){
+                    this.$('#g-oauth-provider-' + id + '-client-auth-url').val(
+                        this.settingVals['oauth.' + id + '_client_auth_url']);
+                    this.$('#g-oauth-provider-' + id + '-client-token-url').val(
+                        this.settingVals['oauth.' + id + '_client_token_url']);
+                    this.$('#g-oauth-provider-' + id + '-client-scope').val(
+                        this.settingVals['oauth.' + id + '_client_scope']);
+                    this.$('#g-oauth-provider-' + id + '-client-button-color').val(
+                        this.settingVals['oauth.' + id + '_client_button_color']);
+                    this.$('#g-oauth-provider-' + id + '-client-icon-url').val(
+                        this.settingVals['oauth.' + id + '_client_icon_url']);
+                    this.$('#g-oauth-provider-' + id + '-client-name').val(
+                        this.settingVals['oauth.' + id + '_client_name']);
+                }
             }, this);
 
             var checked = this.settingVals['oauth.ignore_registration_policy'];
@@ -216,7 +222,11 @@ var ConfigView = View.extend({
         settings.push({
             key: 'oauth.providers_enabled',
             value: _.filter(this.providerIds, function (id) {
-                return !!this.$('#g-oauth-provider-' + id + '-client-id').val();
+                var enabled = !!this.$('#g-oauth-provider-' + id + '-client-id').val() && !!this.$('#g-oauth-provider-' + id + '-client-secret').val();
+                if (id.includes("custom")) {
+                    enabled = enabled && !!this.$('#g-oauth-provider-' + id + '-client-auth-url').val() && !!this.$('#g-oauth-provider-' + id + '-client-token-url').val();;
+                }
+                return enabled;
             }, this)
         });
 
