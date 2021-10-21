@@ -26,7 +26,7 @@ def checkOauthUser(event):
 
         if availableUserProviders:
             prettyProviderNames = ', '.join(sorted(
-                providers.idMap[userProvider].getProviderName(external=True)
+                providers.idMap[userProvider].getClientName() or providers.idMap[userProvider].getProviderName(external=True)
                 for userProvider in availableUserProviders
             ))
             helpMessage = 'Please log in with %s, or use the password reset link.' % \
