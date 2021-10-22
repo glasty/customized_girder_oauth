@@ -18,6 +18,11 @@ girder_oauth/providers/github.py
 girder_oauth/providers/globus.py
 girder_oauth/providers/google.py
 girder_oauth/providers/linkedin.py
+girder_oauth/providers/custom.py
+girder_oauth/providers/custom2.py
+girder_oauth/providers/custom3.py
+girder_oauth/providers/custom4.py
+girder_oauth/providers/custom5.py
 girder_oauth/web_client/main.js
 girder_oauth/web_client/package.json
 girder_oauth/web_client/routes.js

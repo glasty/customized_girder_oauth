@@ -33,6 +33,46 @@ class PluginSettings:
     CUSTOM_CLIENT_ICON_URL = 'oauth.custom_client_icon_url'
     CUSTOM_CLIENT_NAME = 'oauth.custom_client_name'
 
+    CUSTOM2_CLIENT_ID = 'oauth.custom2_client_id'
+    CUSTOM2_CLIENT_SECRET = 'oauth.custom2_client_secret'
+    CUSTOM2_CLIENT_AUTH_URL = 'oauth.custom2_client_auth_url'
+    CUSTOM2_CLIENT_TOKEN_URL = 'oauth.custom2_client_token_url'
+    CUSTOM2_CLIENT_SCOPE = 'oauth.custom2_client_scope'
+    CUSTOM2_CLIENT_BUTTON_COLOR = "oauth.custom2_client_button_color"
+    CUSTOM2_CLIENT_ICON_URL = 'oauth.custom2_client_icon_url'
+    CUSTOM2_CLIENT_NAME = 'oauth.custom2_client_name'
+
+    CUSTOM3_CLIENT_ID = 'oauth.custom3_client_id'
+    CUSTOM3_CLIENT_SECRET = 'oauth.custom3_client_secret'
+    CUSTOM3_CLIENT_AUTH_URL = 'oauth.custom3_client_auth_url'
+    CUSTOM3_CLIENT_TOKEN_URL = 'oauth.custom3_client_token_url'
+    CUSTOM3_CLIENT_SCOPE = 'oauth.custom3_client_scope'
+    CUSTOM3_CLIENT_BUTTON_COLOR = "oauth.custom3_client_button_color"
+    CUSTOM3_CLIENT_ICON_URL = 'oauth.custom3_client_icon_url'
+    CUSTOM3_CLIENT_NAME = 'oauth.custom3_client_name'
+
+    CUSTOM4_CLIENT_ID = 'oauth.custom4_client_id'
+    CUSTOM4_CLIENT_SECRET = 'oauth.custom4_client_secret'
+    CUSTOM4_CLIENT_AUTH_URL = 'oauth.custom4_client_auth_url'
+    CUSTOM4_CLIENT_TOKEN_URL = 'oauth.custom4_client_token_url'
+    CUSTOM4_CLIENT_SCOPE = 'oauth.custom4_client_scope'
+    CUSTOM4_CLIENT_BUTTON_COLOR = "oauth.custom4_client_button_color"
+    CUSTOM4_CLIENT_ICON_URL = 'oauth.custom4_client_icon_url'
+    CUSTOM4_CLIENT_NAME = 'oauth.custom4_client_name'
+
+    CUSTOM5_CLIENT_ID = 'oauth.custom5_client_id'
+    CUSTOM5_CLIENT_SECRET = 'oauth.custom5_client_secret'
+    CUSTOM5_CLIENT_AUTH_URL = 'oauth.custom5_client_auth_url'
+    CUSTOM5_CLIENT_TOKEN_URL = 'oauth.custom5_client_token_url'
+    CUSTOM5_CLIENT_SCOPE = 'oauth.custom5_client_scope'
+    CUSTOM5_CLIENT_BUTTON_COLOR = "oauth.custom5_client_button_color"
+    CUSTOM5_CLIENT_ICON_URL = 'oauth.custom5_client_icon_url'
+    CUSTOM5_CLIENT_NAME = 'oauth.custom5_client_name'
+
+
+
+
+
 
 
 @setting_utilities.default(PluginSettings.PROVIDERS_ENABLED)
@@ -52,20 +92,58 @@ def _defaultIgnoreRegistrationPolicy():
     PluginSettings.LINKEDIN_CLIENT_ID,
     PluginSettings.BITBUCKET_CLIENT_ID,
     PluginSettings.BOX_CLIENT_ID,
-    PluginSettings.CUSTOM_CLIENT_ID,
     PluginSettings.GOOGLE_CLIENT_SECRET,
     PluginSettings.GLOBUS_CLIENT_SECRET,
     PluginSettings.GITHUB_CLIENT_SECRET,
     PluginSettings.LINKEDIN_CLIENT_SECRET,
     PluginSettings.BITBUCKET_CLIENT_SECRET,
     PluginSettings.BOX_CLIENT_SECRET,
+    # Custom client 1
+    PluginSettings.CUSTOM_CLIENT_ID,
     PluginSettings.CUSTOM_CLIENT_SECRET,
     PluginSettings.CUSTOM_CLIENT_AUTH_URL,
     PluginSettings.CUSTOM_CLIENT_TOKEN_URL,
     PluginSettings.CUSTOM_CLIENT_SCOPE,
     PluginSettings.CUSTOM_CLIENT_BUTTON_COLOR,
     PluginSettings.CUSTOM_CLIENT_ICON_URL,
-    PluginSettings.CUSTOM_CLIENT_NAME
+    PluginSettings.CUSTOM_CLIENT_NAME,
+    # Custom client 2
+    PluginSettings.CUSTOM2_CLIENT_ID,
+    PluginSettings.CUSTOM2_CLIENT_SECRET,
+    PluginSettings.CUSTOM2_CLIENT_AUTH_URL,
+    PluginSettings.CUSTOM2_CLIENT_TOKEN_URL,
+    PluginSettings.CUSTOM2_CLIENT_SCOPE,
+    PluginSettings.CUSTOM2_CLIENT_BUTTON_COLOR,
+    PluginSettings.CUSTOM2_CLIENT_ICON_URL,
+    PluginSettings.CUSTOM2_CLIENT_NAME,
+    # Custom client 3
+    PluginSettings.CUSTOM3_CLIENT_ID,
+    PluginSettings.CUSTOM3_CLIENT_SECRET,
+    PluginSettings.CUSTOM3_CLIENT_AUTH_URL,
+    PluginSettings.CUSTOM3_CLIENT_TOKEN_URL,
+    PluginSettings.CUSTOM3_CLIENT_SCOPE,
+    PluginSettings.CUSTOM3_CLIENT_BUTTON_COLOR,
+    PluginSettings.CUSTOM3_CLIENT_ICON_URL,
+    PluginSettings.CUSTOM3_CLIENT_NAME,
+    # Custom client 4
+    PluginSettings.CUSTOM4_CLIENT_ID,
+    PluginSettings.CUSTOM4_CLIENT_SECRET,
+    PluginSettings.CUSTOM4_CLIENT_AUTH_URL,
+    PluginSettings.CUSTOM4_CLIENT_TOKEN_URL,
+    PluginSettings.CUSTOM4_CLIENT_SCOPE,
+    PluginSettings.CUSTOM4_CLIENT_BUTTON_COLOR,
+    PluginSettings.CUSTOM4_CLIENT_ICON_URL,
+    PluginSettings.CUSTOM4_CLIENT_NAME,
+    # Custom client 5
+    PluginSettings.CUSTOM5_CLIENT_ID,
+    PluginSettings.CUSTOM5_CLIENT_SECRET,
+    PluginSettings.CUSTOM5_CLIENT_AUTH_URL,
+    PluginSettings.CUSTOM5_CLIENT_TOKEN_URL,
+    PluginSettings.CUSTOM5_CLIENT_SCOPE,
+    PluginSettings.CUSTOM5_CLIENT_BUTTON_COLOR,
+    PluginSettings.CUSTOM5_CLIENT_ICON_URL,
+    PluginSettings.CUSTOM5_CLIENT_NAME,
+
 })
 def _defaultOtherSettings():
     return ''
@@ -90,20 +168,57 @@ def _validateIgnoreRegistrationPolicy(doc):
     PluginSettings.LINKEDIN_CLIENT_ID,
     PluginSettings.BITBUCKET_CLIENT_ID,
     PluginSettings.BOX_CLIENT_ID,
-    PluginSettings.CUSTOM_CLIENT_ID,
     PluginSettings.GOOGLE_CLIENT_SECRET,
     PluginSettings.GLOBUS_CLIENT_SECRET,
     PluginSettings.GITHUB_CLIENT_SECRET,
     PluginSettings.LINKEDIN_CLIENT_SECRET,
     PluginSettings.BITBUCKET_CLIENT_SECRET,
     PluginSettings.BOX_CLIENT_SECRET,
+    # Custom client 1
+    PluginSettings.CUSTOM_CLIENT_ID,
     PluginSettings.CUSTOM_CLIENT_SECRET,
     PluginSettings.CUSTOM_CLIENT_AUTH_URL,
     PluginSettings.CUSTOM_CLIENT_TOKEN_URL,
     PluginSettings.CUSTOM_CLIENT_SCOPE,
     PluginSettings.CUSTOM_CLIENT_BUTTON_COLOR,
     PluginSettings.CUSTOM_CLIENT_ICON_URL,
-    PluginSettings.CUSTOM_CLIENT_NAME
+    PluginSettings.CUSTOM_CLIENT_NAME,
+    # Custom client 2
+    PluginSettings.CUSTOM2_CLIENT_ID,
+    PluginSettings.CUSTOM2_CLIENT_SECRET,
+    PluginSettings.CUSTOM2_CLIENT_AUTH_URL,
+    PluginSettings.CUSTOM2_CLIENT_TOKEN_URL,
+    PluginSettings.CUSTOM2_CLIENT_SCOPE,
+    PluginSettings.CUSTOM2_CLIENT_BUTTON_COLOR,
+    PluginSettings.CUSTOM2_CLIENT_ICON_URL,
+    PluginSettings.CUSTOM2_CLIENT_NAME,
+    # Custom client 3
+    PluginSettings.CUSTOM3_CLIENT_ID,
+    PluginSettings.CUSTOM3_CLIENT_SECRET,
+    PluginSettings.CUSTOM3_CLIENT_AUTH_URL,
+    PluginSettings.CUSTOM3_CLIENT_TOKEN_URL,
+    PluginSettings.CUSTOM3_CLIENT_SCOPE,
+    PluginSettings.CUSTOM3_CLIENT_BUTTON_COLOR,
+    PluginSettings.CUSTOM3_CLIENT_ICON_URL,
+    PluginSettings.CUSTOM3_CLIENT_NAME,
+    # Custom client 4
+    PluginSettings.CUSTOM4_CLIENT_ID,
+    PluginSettings.CUSTOM4_CLIENT_SECRET,
+    PluginSettings.CUSTOM4_CLIENT_AUTH_URL,
+    PluginSettings.CUSTOM4_CLIENT_TOKEN_URL,
+    PluginSettings.CUSTOM4_CLIENT_SCOPE,
+    PluginSettings.CUSTOM4_CLIENT_BUTTON_COLOR,
+    PluginSettings.CUSTOM4_CLIENT_ICON_URL,
+    PluginSettings.CUSTOM4_CLIENT_NAME,
+    # Custom client 5
+    PluginSettings.CUSTOM5_CLIENT_ID,
+    PluginSettings.CUSTOM5_CLIENT_SECRET,
+    PluginSettings.CUSTOM5_CLIENT_AUTH_URL,
+    PluginSettings.CUSTOM5_CLIENT_TOKEN_URL,
+    PluginSettings.CUSTOM5_CLIENT_SCOPE,
+    PluginSettings.CUSTOM5_CLIENT_BUTTON_COLOR,
+    PluginSettings.CUSTOM5_CLIENT_ICON_URL,
+    PluginSettings.CUSTOM5_CLIENT_NAME,
 })
 def _validateOtherSettings(doc):
     pass

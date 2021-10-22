@@ -8,6 +8,10 @@ from .linkedin import LinkedIn
 from .bitbucket import Bitbucket
 from .box import Box
 from .custom import Custom
+from .custom2 import Custom2
+from .custom3 import Custom3
+from .custom4 import Custom4
+from .custom5 import Custom5
 
 
 def addProvider(provider):
@@ -24,3 +28,10 @@ addProvider(LinkedIn)
 addProvider(Bitbucket)
 addProvider(Box)
 addProvider(Custom)
+addProvider(Custom2)
+addProvider(Custom3)
+addProvider(Custom4)
+addProvider(Custom5)
+
+
+

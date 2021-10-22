@@ -98,6 +98,26 @@ var OAuthLoginView = View.extend({
             icon: 'custom',
             class: 'g-oauth-button-custom',
             isCustom: true,
+        },
+        custom2: {
+            icon: 'custom',
+            class: 'g-oauth-button-custom',
+            isCustom: true,
+        },
+        custom3: {
+            icon: 'custom',
+            class: 'g-oauth-button-custom',
+            isCustom: true,
+        },
+        custom4: {
+            icon: 'custom',
+            class: 'g-oauth-button-custom',
+            isCustom: true,
+        }, 
+        custom5: {
+            icon: 'custom',
+            class: 'g-oauth-button-custom',
+            isCustom: true,
         }
     }
 });
