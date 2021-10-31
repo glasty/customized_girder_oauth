@@ -2,9 +2,9 @@ Metadata-Version: 2.1
 Name: girder-oauth
 Version: 3.1.6
 Summary: Allow users to login via supported OAuth2 providers.
-Home-page: http://girder.readthedocs.io/en/latest/plugins.html#oauth-login
-Author: Kitware, Inc.
-Author-email: kitware@kitware.com
+Home-page: https://github.com/glasty/customized_girder_oauth
+Author: Matej Stano
+Author-email: 11matejstano@gmail.com
 License: Apache 2.0
 Platform: UNKNOWN
 Classifier: Development Status :: 5 - Production/Stable
