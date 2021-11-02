@@ -28,6 +28,7 @@ class Box(ProviderBase):
             raise Exception('No Box client ID setting is present.')
 
         callbackUrl = '/'.join((getApiUrl(), 'oauth', 'box', 'callback'))
+        callbackUrl = callbackUrl.replace("http", "https")
 
         query = urllib.parse.urlencode({
             'response_type': 'code',

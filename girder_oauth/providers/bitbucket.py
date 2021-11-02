@@ -30,6 +30,7 @@ class Bitbucket(ProviderBase):
             raise Exception('No Bitbucket client ID setting is present.')
 
         callbackUrl = '/'.join((getApiUrl(), 'oauth', 'bitbucket', 'callback'))
+        callbackUrl = callbackUrl.replace("http", "https")
 
         query = urllib.parse.urlencode({
             'client_id': clientId,

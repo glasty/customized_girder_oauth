@@ -31,7 +31,8 @@ class Google(ProviderBase):
             raise Exception('No Google client ID setting is present.')
 
         callbackUrl = '/'.join((getApiUrl(), 'oauth', 'google', 'callback'))
-
+        callbackUrl = callbackUrl.replace("http", "https")
+        
         query = urllib.parse.urlencode({
             'response_type': 'code',
             'access_type': 'online',
