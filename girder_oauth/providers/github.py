@@ -30,8 +30,7 @@ class GitHub(ProviderBase):
             raise Exception('No GitHub client ID setting is present.')
 
         callbackUrl = '/'.join((getApiUrl(), 'oauth', 'github', 'callback'))
-        callbackUrl = callbackUrl.replace("http", "https")
-        
+
         query = urllib.parse.urlencode({
             'client_id': clientId,
             'redirect_uri': callbackUrl,

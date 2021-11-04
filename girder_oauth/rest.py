@@ -14,6 +14,7 @@ from girder.models.token import Token
 
 from . import providers
 from .settings import PluginSettings
+import logging
 
 
 class OAuth(Resource):
@@ -109,17 +110,30 @@ class OAuth(Resource):
         if error is not None:
             raise RestException("Provider returned error: '%s'." % error, code=502)
 
+        logging.warning("rest.py: Line 113")
+
         self.requireParams({'state': state, 'code': code})
+
+        logging.warning("rest.py: Line 117")
 
         providerName = provider
         provider = providers.idMap.get(providerName)
         if not provider:
             raise RestException('Unknown provider "%s".' % providerName)
 
+        logging.warning("rest.py: Line 124")
+
         redirect = self._validateCsrfToken(state)
 
+        logging.warning("rest.py: Line 128")
+        logging.warning("rest.py: Line 129 - state: %s", state)
+        logging.warning("rest.py: Line 130 - cherrypy.url: %s", cherrypy.url())
+
         providerObj = provider(cherrypy.url())
+        logging.warning("rest.py: Line 133")
         token = providerObj.getToken(code)
+
+        logging.warning("rest.py: Line 136")
 
         event = events.trigger('oauth.auth_callback.before', {
             'provider': provider,
@@ -128,8 +142,12 @@ class OAuth(Resource):
         if event.defaultPrevented:
             raise cherrypy.HTTPRedirect(redirect)
 
+        logging.warning("rest.py: Line 145")
+
         user = providerObj.getUser(token)
         User().verifyLogin(user)
+
+        logging.warning("rest.py: Line 150")
 
         event = events.trigger('oauth.auth_callback.after', {
             'provider': provider,
@@ -139,10 +157,16 @@ class OAuth(Resource):
         if event.defaultPrevented:
             raise cherrypy.HTTPRedirect(redirect)
 
+        logging.warning("rest.py: Line 160")
+
         girderToken = self.sendAuthTokenCookie(user)
         try:
             redirect = redirect.format(girderToken=str(girderToken['_id']))
         except KeyError:
             pass  # in case there's another {} that's not handled by format
 
+        logging.warning("rest.py: Line 168")
+
         raise cherrypy.HTTPRedirect(redirect)
+
+        logging.warning("rest.py: Line 172")

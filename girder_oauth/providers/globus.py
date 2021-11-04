@@ -30,8 +30,7 @@ class Globus(ProviderBase):
             raise Exception('No Globus client ID setting is present.')
 
         callbackUrl = '/'.join((getApiUrl(), 'oauth', 'globus', 'callback'))
-        callbackUrl = callbackUrl.replace("http", "https")
-        
+
         query = urllib.parse.urlencode({
             'response_type': 'code',
             'access_type': 'online',

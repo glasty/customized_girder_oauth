@@ -9,6 +9,7 @@ from girder.models.user import User
 from girder.settings import SettingKey
 
 from ..settings import PluginSettings
+import logging
 
 
 class ProviderBase:
@@ -31,6 +32,7 @@ class ProviderBase:
         self.clientId = clientId or self.getClientIdSetting()
         self.clientSecret = clientSecret or self.getClientSecretSetting()
         self.redirectUri = redirectUri
+        logging.warning("Base.py: Line 35 - redirectUri: %s", self.redirectUri)
 
     @classmethod
     def getProviderName(cls, external=False):
@@ -123,11 +125,18 @@ class ProviderBase:
         and return the value. If an error occurs, this raises an appropriate
         exception containing the information.
         """
+
+        logging.warning("Base.py: Line 129")
+
         resp = requests.request(**kwargs)
         content = resp.content
 
+        logging.warning("Base.py: Line 134")
+
         if isinstance(content, bytes):
             content = content.decode('utf8')
+
+        logging.warning("Base.py: Line 139")
 
         try:
             resp.raise_for_status()
@@ -136,6 +145,8 @@ class ProviderBase:
                 'Got %s code from provider, response="%s".' % (
                     resp.status_code, content
                 ), code=502)
+
+        logging.warning("Base.py: Line 149")
 
         try:
             return json.loads(content)

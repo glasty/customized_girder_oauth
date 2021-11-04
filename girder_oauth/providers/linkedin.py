@@ -30,8 +30,7 @@ class LinkedIn(ProviderBase):
             raise Exception('No LinkedIn client ID setting is present.')
 
         callbackUrl = '/'.join((getApiUrl(), 'oauth', 'linkedin', 'callback'))
-        callbackUrl = callbackUrl.replace("http", "https")
-        
+
         query = urllib.parse.urlencode({
             'response_type': 'code',
             'client_id': clientId,

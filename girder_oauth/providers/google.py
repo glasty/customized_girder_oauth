@@ -9,7 +9,7 @@ from girder.models.setting import Setting
 
 from .base import ProviderBase
 from ..settings import PluginSettings
-
+import logging
 
 class Google(ProviderBase):
     # https://developers.google.com/identity/protocols/OpenIDConnect
@@ -31,8 +31,7 @@ class Google(ProviderBase):
             raise Exception('No Google client ID setting is present.')
 
         callbackUrl = '/'.join((getApiUrl(), 'oauth', 'google', 'callback'))
-        callbackUrl = callbackUrl.replace("http", "https")
-        
+
         query = urllib.parse.urlencode({
             'response_type': 'code',
             'access_type': 'online',
@@ -46,6 +45,9 @@ class Google(ProviderBase):
         return '%s?%s' % (cls._AUTH_URL, query)
 
     def getToken(self, code):
+
+        logging.warning("Google.py: Line 50")
+
         params = {
             'grant_type': 'authorization_code',
             'code': code,
@@ -53,7 +55,13 @@ class Google(ProviderBase):
             'client_secret': self.clientSecret,
             'redirect_uri': self.redirectUri
         }
+
+        logging.warning("Google.py: Line 60 - params: %s", params)
+
         resp = self._getJson(method='POST', url=self._TOKEN_URL, data=params)
+        
+        logging.warning("Google.py: Line 64")
+        
         return resp
 
     def getUser(self, token):

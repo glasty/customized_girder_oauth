@@ -6,6 +6,7 @@ from girder.models.user import User
 from girder.plugin import GirderPlugin
 
 from . import rest, providers
+import logging
 
 
 def checkOauthUser(event):
@@ -46,6 +47,8 @@ class OAuthPlugin(GirderPlugin):
         User().ensureIndex((
             (('oauth.provider', SortDir.ASCENDING),
              ('oauth.id', SortDir.ASCENDING)), {}))
+
+        logging.basicConfig(filename='/girder/assetstores/default/Logs.log')
 
         events.bind('no_password_login_attempt', 'oauth', checkOauthUser)
 

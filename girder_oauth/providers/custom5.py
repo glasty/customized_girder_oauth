@@ -48,7 +48,6 @@ class Custom5(ProviderBase):
             raise Exception('No Custom client ID setting is present.')
 
         callbackUrl = '/'.join((getApiUrl(), 'oauth', 'custom5', 'callback'))
-        callbackUrl = callbackUrl.replace("http", "https")
 
         query = urllib.parse.urlencode({
             'response_type': 'code',
