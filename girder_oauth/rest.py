@@ -15,7 +15,6 @@ from girder.models.token import Token
 from . import providers
 from .settings import PluginSettings
 
-
 class OAuth(Resource):
     def __init__(self):
         super().__init__()
