@@ -177,6 +177,8 @@ class ProviderBase:
         if not user:
             user = User().findOne({'email': email})
 
+        logging.warning("base.py: (_createOrReuseUser) Line 180 - user: %s", user)
+
         dirty = False
         # Create the user if it's still not found
         if not user:
@@ -189,9 +191,15 @@ class ProviderBase:
                         'administrator to create an account for you.')
             login = cls._deriveLogin(email, firstName, lastName, userName)
 
+            logging.warning("base.py: (_createOrReuseUser) Line 194 - login: %s", login)
+
             user = User().createUser(
                 login=login, password=None, firstName=firstName, lastName=lastName, email=email)
+            
+            logging.warning("base.py: (_createOrReuseUser) Line 199 - user: %s", user)
+            
         else:
+            logging.warning("base.py: (_createOrReuseUser) Line 203")
             # Migrate from a legacy format where only 1 provider was stored
             if isinstance(user.get('oauth'), dict):
                 user['oauth'] = [user['oauth']]
@@ -216,6 +224,8 @@ class ProviderBase:
             dirty = True
         if dirty:
             user = User().save(user)
+
+        logging.warning("base.py: (_createOrReuseUser) Line 227 - user: %s", user)
 
         return user
 
@@ -259,10 +269,16 @@ class ProviderBase:
         """
         # Note, the user's OAuth2 ID should never be used to form a login name,
         # as many OAuth2 services consider that to be private data
+
+        logging.warning("base.py: (_deriveLogin) Line 273 - FIRST NAME: %s, LAST NAME: %s, EMAIL: %s, USER NAME: %s", firstName, lastName, email, userName)
+
         for login in cls._generateLogins(email, firstName, lastName, userName):
             login = login.lower()
             if cls._testLogin(login):
+                logging.warning("base.py: (_deriveLogin) Line 278 - login: %s", login)
                 return login
+
+        logging.warning("base.py: (_deriveLogin) Line 281")
 
         raise Exception('Could not generate a unique login name for %s (%s %s)'
                         % (email, firstName, lastName))
@@ -273,6 +289,8 @@ class ProviderBase:
         When attempting to generate a username, use this to test if the given
         name is valid.
         """
+        logging.warning("base.py: (_testLogin) Line 290 - login: %s", login)
+
         try:
             User()._validateLogin(login)
         except ValidationException:

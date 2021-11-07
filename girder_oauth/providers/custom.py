@@ -9,6 +9,7 @@ from girder.models.setting import Setting
 
 from .base import ProviderBase
 from ..settings import PluginSettings
+import logging
 
 class Custom(ProviderBase):
     def getClientIdSetting(self):
@@ -78,16 +79,29 @@ class Custom(ProviderBase):
     def getUser(self, token):
         idToken = token['id_token']
 
+        logging.warning("custom.py: (getUser) Line 82 - token: %s", token)
+
         payload = jwt.decode(idToken, verify=False)
+
+        logging.warning("custom.py: (getUser) Line 86 - payload: %s", payload)
 
         oauthId = payload['sub']
 
+        logging.warning("custom.py: (getUser) Line 90 - oauthId: %s", oauthId)
+
         email = payload.get('email')
+        
         if not email:
             raise RestException('This user has no available email address.', code=502)
 
         firstName = payload.get('given_name')
-        lastName = payload.get('last_name')
+        lastName = payload.get('family_name')
+
+        logging.warning("custom.py: (getUser) Line 100 - firstName: %s", firstName)
+        logging.warning("custom.py: (getUser) Line 101 - lastName: %s", lastName)
 
         user = self._createOrReuseUser(oauthId, email, firstName, lastName)
+
+        logging.warning("custom.py: (getUser) Line 105 - user: %s", user)
+        
         return user

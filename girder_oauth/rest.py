@@ -147,7 +147,7 @@ class OAuth(Resource):
         user = providerObj.getUser(token)
         User().verifyLogin(user)
 
-        logging.warning("rest.py: Line 150")
+        logging.warning("rest.py: Line 150 - user: %s", user)
 
         event = events.trigger('oauth.auth_callback.after', {
             'provider': provider,
