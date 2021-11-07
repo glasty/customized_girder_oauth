@@ -220,7 +220,7 @@ class ProviderBase:
             userName = re.sub(r'[\W_]+', '', userName)
             yield userName
 
-            for i in range(1, 6):
+            for i in range(1, 50):
                 yield '%s%d' % (userName, i)
 
         # Next try to use the prefix from their email address
@@ -231,7 +231,7 @@ class ProviderBase:
         # Finally try to use their first and last name
         yield '%s%s' % (firstName, lastName)
 
-        for i in range(1, 6):
+        for i in range(1, 500):
             yield '%s%s%d' % (firstName, lastName, i)
 
     @classmethod

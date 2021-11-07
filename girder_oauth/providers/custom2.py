@@ -87,7 +87,7 @@ class Custom2(ProviderBase):
             raise RestException('This user has no available email address.', code=502)
 
         firstName = payload.get('given_name')
-        lastName = payload.get('last_name')
+        lastName = payload.get('family_name')
 
         user = self._createOrReuseUser(oauthId, email, firstName, lastName)
         return user

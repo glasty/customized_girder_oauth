@@ -85,7 +85,7 @@ p Only fill in the information for the OAuth2 providers you wish to enable.
             if provider.isCustom
               .form-group
                 label.control-label(for=`g-oauth-provider-${provider.id}-client-scope`) #{provider.name} client scope
-                p Scope defines application level of access to user account. Application needs access to 'given_name', 'last_name' and 'email'. More than one scope can be requested - each key word has to be separeted by space e.g: 'profile email'
+                p Scope defines application level of access to user account. Application needs access to 'given_name', 'family_name' and 'email'. More than one scope can be requested - each key word has to be separeted by space e.g: 'profile email'
                 input.input-sm.form-control(id=`g-oauth-provider-${provider.id}-client-scope`,
                     type="text", placeholder="Client scope")
             else 
