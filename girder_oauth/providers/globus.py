@@ -16,10 +16,12 @@ class Globus(ProviderBase):
     _TOKEN_URL = 'https://auth.globus.org/v2/oauth2/token'
     _API_USER_URL = 'https://auth.globus.org/v2/oauth2/userinfo'
 
-    def getClientIdSetting(self):
+    @classmethod
+    def getClientIdSetting(cls):
         return Setting().get(PluginSettings.GLOBUS_CLIENT_ID)
 
-    def getClientSecretSetting(self):
+    @classmethod
+    def getClientSecretSetting(cls):
         return Setting().get(PluginSettings.GLOBUS_CLIENT_SECRET)
 
     @classmethod

@@ -14,10 +14,12 @@ class Box(ProviderBase):
     _TOKEN_URL = 'https://api.box.com/oauth2/token'
     _API_USER_URL = 'https://api.box.com/2.0/users/me'
 
-    def getClientIdSetting(self):
+    @classmethod
+    def getClientIdSetting(cls):
         return Setting().get(PluginSettings.BOX_CLIENT_ID)
 
-    def getClientSecretSetting(self):
+    @classmethod
+    def getClientSecretSetting(cls):
         return Setting().get(PluginSettings.BOX_CLIENT_SECRET)
 
     @classmethod

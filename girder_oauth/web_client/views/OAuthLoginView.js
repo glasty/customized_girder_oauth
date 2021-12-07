@@ -94,6 +94,8 @@ var OAuthLoginView = View.extend({
             icon: 'box',
             class: 'g-oauth-button-box'
         },
+        // NOT WORKING IN GIRDER
+        //...[...Array(8).keys()].reduce((a, v) => ({...a, [`custom${v !== 0 ? v + 1 : ""}`]: { icon: "custom", class: "g-oauth-button-custom", isCustom: true}}), {})
         custom: {
             icon: 'custom',
             class: 'g-oauth-button-custom',
@@ -115,6 +117,21 @@ var OAuthLoginView = View.extend({
             isCustom: true,
         }, 
         custom5: {
+            icon: 'custom',
+            class: 'g-oauth-button-custom',
+            isCustom: true,
+        },
+        custom6: {
+            icon: 'custom',
+            class: 'g-oauth-button-custom',
+            isCustom: true,
+        },
+        custom7: {
+            icon: 'custom',
+            class: 'g-oauth-button-custom',
+            isCustom: true,
+        },
+        custom8: {
             icon: 'custom',
             class: 'g-oauth-button-custom',
             isCustom: true,

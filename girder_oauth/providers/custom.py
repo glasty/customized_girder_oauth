@@ -11,43 +11,46 @@ from .base import ProviderBase
 from ..settings import PluginSettings
 
 class Custom(ProviderBase):
-    def getClientIdSetting(self):
-        return Setting().get(PluginSettings.CUSTOM_CLIENT_ID)
+    @classmethod
+    def getClientIdSetting(cls):
+        return Setting().get('oauth.' + cls.__name__.lower() + '_client_id')
 
-    def getClientSecretSetting(self):
-        return Setting().get(PluginSettings.CUSTOM_CLIENT_SECRET)
+    @classmethod
+    def getClientSecretSetting(cls):
+        return Setting().get('oauth.'  + cls.__name__.lower() + '_client_secret')
 
     @classmethod
     def getClientAuthUrl(cls):
-        return Setting().get(PluginSettings.CUSTOM_CLIENT_AUTH_URL)
+        return Setting().get('oauth.'  + cls.__name__.lower() + '_client_auth_url')
 
-    def getClientTokenUrl(self):
-        return Setting().get(PluginSettings.CUSTOM_CLIENT_TOKEN_URL)
+    @classmethod
+    def getClientTokenUrl(cls):
+        return Setting().get('oauth.'  + cls.__name__.lower() + '_client_token_url')
 
     @classmethod
     def getClientScope(cls):
-        return Setting().get(PluginSettings.CUSTOM_CLIENT_SCOPE)
+        return Setting().get('oauth.'  + cls.__name__.lower() + '_client_scope')
     
     @classmethod
     def getClientButtonColor(cls):
-        color = Setting().get(PluginSettings.CUSTOM_CLIENT_BUTTON_COLOR)
+        color = Setting().get('oauth.'  + cls.__name__.lower() + '_client_button_color')
         return color.split(';')
 
     @classmethod
     def getClientIconUrl(cls):
-        return Setting().get(PluginSettings.CUSTOM_CLIENT_ICON_URL)
+        return Setting().get('oauth.'  + cls.__name__.lower() + '_client_icon_url')
 
     @classmethod
     def getClientName(cls):
-        return Setting().get(PluginSettings.CUSTOM_CLIENT_NAME)
+        return Setting().get('oauth.'  + cls.__name__.lower() +  '_client_name')
 
     @classmethod
     def getUrl(cls, state):
-        clientId = Setting().get(PluginSettings.CUSTOM_CLIENT_ID)
+        clientId = Setting().get('oauth.'  + cls.__name__.lower() +  '_client_id')
         if not clientId:
             raise Exception('No Custom client ID setting is present.')
 
-        callbackUrl = '/'.join((getApiUrl(), 'oauth', 'custom', 'callback'))
+        callbackUrl = '/'.join((getApiUrl(), 'oauth', cls.__name__.lower(), 'callback'))
 
         query = urllib.parse.urlencode({
             'response_type': 'code',

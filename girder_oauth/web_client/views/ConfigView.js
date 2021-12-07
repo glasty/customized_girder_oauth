@@ -127,57 +127,22 @@ var ConfigView = View.extend({
             instructions: 'Client IDs and secret keys are managed in the Box ' +
                           'Developer Services page. When creating your client ID ' +
                           'there, use the following as the authorization callback URL:'
-        }, {
-            id: 'custom',
-            name: 'Custom provider 1',
-            icon: 'custom',
-            hasAuthorizedOrigins: false,
-            isCustom: true,
-            instructions: 'Here you can configurate your custom client. Get client ID and secret key' +
-                          'from your oauth/openid provider. Make sure that scopes you requesting will have' +
-                          'necessary information requested by Girder for creating account (see below). ' +
-                          'When configuratin provider use the folowing as the authorization callback URL:' 
-        }, {
-            id: 'custom2',
-            name: 'Custom provider 2',
-            icon: 'custom',
-            hasAuthorizedOrigins: false,
-            isCustom: true,
-            instructions: 'Here you can configurate your custom client. Get client ID and secret key' +
-            'from your oauth/openid provider. Make sure that scopes you requesting will have' +
-            'necessary information requested by Girder for creating account (see below). ' +
-            'When configuratin provider use the folowing as the authorization callback URL:' 
-        }, {
-            id: 'custom3',
-            name: 'Custom provider 3',
-            icon: 'custom',
-            hasAuthorizedOrigins: false,
-            isCustom: true,
-            instructions: 'Here you can configurate your custom client. Get client ID and secret key' +
-            'from your oauth/openid provider. Make sure that scopes you requesting will have' +
-            'necessary information requested by Girder for creating account (see below). ' +
-            'When configuratin provider use the folowing as the authorization callback URL:' 
-        }, {
-            id: 'custom4',
-            name: 'Custom provider 4',
-            icon: 'custom',
-            hasAuthorizedOrigins: false,
-            isCustom: true,
-            instructions: 'Here you can configurate your custom client. Get client ID and secret key' +
-            'from your oauth/openid provider. Make sure that scopes you requesting will have' +
-            'necessary information requested by Girder for creating account (see below). ' +
-            'When configuratin provider use the folowing as the authorization callback URL:' 
-        }, {
-            id: 'custom5',
-            name: 'Custom provider 5',
-            icon: 'custom',
-            hasAuthorizedOrigins: false,
-            isCustom: true,
-            instructions: 'Here you can configurate your custom client. Get client ID and secret key' +
-            'from your oauth/openid provider. Make sure that scopes you requesting will have' +
-            'necessary information requested by Girder for creating account (see below). ' +
-            'When configuratin provider use the folowing as the authorization callback URL:' 
         }];
+        //Append info about custom providers
+        Array(8).fill(0).forEach((_, i) => {
+            const cprov = {
+                id: i == 0 ? 'custom' : `custom${i+1}`, 
+                name: `Custom provider ${i + 1}`, 
+                icon: 'custom',
+                hasAuthorizedOrigins: false,
+                isCustom: true,
+                instructions: 'Here you can configurate your custom client. Get client ID and secret key ' +
+                            'from your OpenID provider. Make sure that scopes you requesting will have ' +
+                            'necessary information requested by Girder for creating account (see below). ' +
+                            'When configurating provider use the folowing as the authorization callback URL:'
+                };
+            this.providers.push(cprov);
+        })
         this.providerIds = _.pluck(this.providers, 'id');
 
         var settingKeys = ['oauth.ignore_registration_policy'];

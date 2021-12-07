@@ -16,10 +16,12 @@ class Bitbucket(ProviderBase):
     _API_USER_URL = 'https://api.bitbucket.org/2.0/user'
     _API_EMAILS_URL = 'https://api.bitbucket.org/2.0/user/emails'
 
-    def getClientIdSetting(self):
+    @classmethod
+    def getClientIdSetting(cls):
         return Setting().get(PluginSettings.BITBUCKET_CLIENT_ID)
 
-    def getClientSecretSetting(self):
+    @classmethod
+    def getClientSecretSetting(cls):
         return Setting().get(PluginSettings.BITBUCKET_CLIENT_SECRET)
 
     @classmethod

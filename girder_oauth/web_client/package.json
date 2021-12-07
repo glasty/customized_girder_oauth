@@ -11,6 +11,9 @@
         "type": "git",
         "url": "https://github.com/girder/girder.git"
     },
+    "dependencies": {
+        "@babel/preset-env": "7.16.4"
+    },
     "peerDependencies": {
         "@girder/core": "*"
     },

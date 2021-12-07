@@ -18,10 +18,12 @@ class Google(ProviderBase):
     _TOKEN_URL = 'https://oauth2.googleapis.com/token'
     _DISCOVERY_URL = 'https://accounts.google.com/.well-known/openid-configuration'
 
-    def getClientIdSetting(self):
+    @classmethod
+    def getClientIdSetting(cls):
         return Setting().get(PluginSettings.GOOGLE_CLIENT_ID)
 
-    def getClientSecretSetting(self):
+    @classmethod
+    def getClientSecretSetting(cls):
         return Setting().get(PluginSettings.GOOGLE_CLIENT_SECRET)
 
     @classmethod

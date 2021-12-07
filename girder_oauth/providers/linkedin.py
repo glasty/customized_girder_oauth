@@ -16,10 +16,12 @@ class LinkedIn(ProviderBase):
     _API_USER_URL = 'https://api.linkedin.com/v1/people/~'
     _API_USER_FIELDS = ('id', 'emailAddress', 'firstName', 'lastName')
 
-    def getClientIdSetting(self):
+    @classmethod
+    def getClientIdSetting(cls):
         return Setting().get(PluginSettings.LINKEDIN_CLIENT_ID)
 
-    def getClientSecretSetting(self):
+    @classmethod
+    def getClientSecretSetting(cls):
         return Setting().get(PluginSettings.LINKEDIN_CLIENT_SECRET)
 
     @classmethod

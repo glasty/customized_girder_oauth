@@ -2,6 +2,7 @@
 import json
 import re
 import requests
+import random 
 
 from girder.exceptions import RestException, ValidationException
 from girder.models.setting import Setting
@@ -40,17 +41,20 @@ class ProviderBase:
         else:
             return providerName.lower()
 
-    def getClientIdSetting(self):
+    @classmethod
+    def getClientIdSetting(cls):
         raise NotImplementedError()
 
-    def getClientSecretSetting(self):
+    @classmethod
+    def getClientSecretSetting(cls):
         raise NotImplementedError()
 
     @classmethod
     def getClientAuthUrl(cls):
         raise NotImplementedError()
 
-    def getClientTokenUrl(self):
+    @classmethod
+    def getClientTokenUrl(cls):
         raise NotImplementedError()
 
     @classmethod
@@ -228,11 +232,18 @@ class ProviderBase:
         yield prefix
         yield re.sub(r'[\W_]+', '', prefix)
 
-        # Finally try to use their first and last name
-        yield '%s%s' % (firstName, lastName)
+        # If one both first name and last name are None create user name with random hash
+        if firstName is None and lastName is None:
+            for i in range(1, 30):
+                yield '%s%008x' % ("user", random.getrandbits(32))
 
-        for i in range(1, 500):
-            yield '%s%s%d' % (firstName, lastName, i)
+        # Otherwise try to use their first and last name
+        else:
+            yield '%s%s' % (firstName or "", lastName or "")
+
+            for i in range(1, 500):
+                yield '%s%s%d' % (firstName or "", lastName or "", i)
+
 
     @classmethod
     def _deriveLogin(cls, email, firstName, lastName, userName=None):

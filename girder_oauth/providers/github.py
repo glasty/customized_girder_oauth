@@ -16,10 +16,12 @@ class GitHub(ProviderBase):
     _API_USER_URL = 'https://api.github.com/user'
     _API_EMAILS_URL = 'https://api.github.com/user/emails'
 
-    def getClientIdSetting(self):
+    @classmethod
+    def getClientIdSetting(cls):
         return Setting().get(PluginSettings.GITHUB_CLIENT_ID)
 
-    def getClientSecretSetting(self):
+    @classmethod
+    def getClientSecretSetting(cls):
         return Setting().get(PluginSettings.GITHUB_CLIENT_SECRET)
 
     @classmethod
